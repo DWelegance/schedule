@@ -1,5 +1,9 @@
 import random
 
+def convert_tuple(tup):
+    str = ''.join(tup)
+    return str
+
 class Employee():
     def __init__(self, name, emp_no):
         self.name = name
@@ -7,7 +11,7 @@ class Employee():
         self.schedule = []
 
     def __str__(self):
-        return f"Name: {self.name} Employee Number: {self.emp_no}\n"
+        return f"Name: {self.name} Employee Number: {self.emp_no}\n Schedule: {self.schedule}"
 
 
 class Roster():
@@ -48,21 +52,21 @@ class Schedule():
 
         while len(self.total_days) > 0:
             for person in people:
-                #todo add comment here
+                #this extra check is necessary for if the total days divided by our employees is not an even number
                 if len(self.total_days) > 0:
                     index = random.randint(0,len(self.total_days) - 1)
                     person.schedule.append(self.total_days.pop(index))
-    #make stupid string thing for chris CUZ ITS THAT BIG OF A DEAL
-    #REMOVE ALL COMMENTS
-    def show(self):
+
+    def __str__(self):
+        string = ""
         for person in self.roster.emp_list:
-            print(person.schedule)
-            print(len(person.schedule))
+            string += str(person)
+        return string
 
 class Main():
     def __init__(self):
         self.s = Schedule(30)
         self.s.make()
-        self.s.show()
+        print(self.s)
 
 m = Main()
